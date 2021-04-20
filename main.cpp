@@ -4,7 +4,9 @@ using namespace std;
 
 int main()
 {
+    long int fila;
     int matrizLed [8][8]={{},{},{},{},{},{},{},{}};
+    int b;
 
     cout << "Para ingresar su patron, debe tener en cuenta que: "  << endl;
     cout << "- El numero 1 se reflejara como el led encendido "  << endl;
@@ -13,8 +15,11 @@ int main()
 
     for(int i=0; i<8; i++){
         cout << "Ingrese la " << i+1 << " fila: " << endl;
-        for (int j=0; j<8 ;j++){
-            cin >> matrizLed [i][j];
+        cin >> fila;
+        for (int j=7; j>=0 ;j--){
+            b=fila%10;
+            matrizLed [i][j]=b;
+            fila=fila/10;
         }
     }
 
@@ -24,7 +29,6 @@ int main()
         }
         cout << endl;
     }
-
 
     return 0;
 }
