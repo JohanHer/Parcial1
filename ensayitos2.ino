@@ -4,6 +4,16 @@ const int SRCLK =4;
 int cpatrones, tpatrones;
 char opcion;
 
+//int **matrizLed, ***matriz3d;
+
+ /* 
+int definematriz(int matriz[][8]){
+  matriz= new int *[8];
+  for (int i=0; i<8; i++){
+    matriz[i]= new int [8];
+  }
+}*/
+
 int matrizLed [8][8]={
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
@@ -37,40 +47,42 @@ void verificacion(){
   }
 }  
 
-void RecibirMatriz(){
-  char valor;
-  int i=0, j=0;
+void RecibirMatriz(int matriz[][8]){
+  String valor; 
+  long int fila;
+  int b;
   Serial.println("Para ingresar su patron, debe tener en cuenta que:");
   Serial.println("- El numero 1 se reflejara como el led encendido ");
   Serial.println("- El numero 0 se reflejara como el led apagado ");
-  Serial.println("- Debe ingresar fila por fila ");
+  Serial.println("- Debe ingresar fila por fila");
   
  
-    for(int i=0; i<8; i++){
-      Serial.print("Ingrese la columna");
-      Serial.println(i+1);
-       for(int j=0; j<8; j++){  
-         Serial.print("Ingrese la fila ");
-  	  Serial.print(j+1);
-      Serial.println(":");
-          while (Serial.available()==0){}
-          
-          valor = Serial.parseInt();
-       	  matrizLed[i][j]= valor;
+  for(int i=0; i<8; i++){
+     Serial.print("Ingrese la fila ");
+     Serial.println(i+1);
+     while (Serial.available()==0){}
+     valor = Serial.readStringUntil('\n'); 
+     fila = valor.toInt();
+     Serial.println(fila);
+     for (int j=7; j>=0 ;j--){
+         b=fila%10;
+         //*(*(matriz+i)+j)=b;
+         matriz[i][j]=b;
+         fila=fila/10;  
        }
-     
     }
- 
 } 
 
 
 
-void imagen(){
+void imagen(int matriz[][8]){
   int m;
   
   for (int i=7; i>=0; i--){
     for (int j=7; j>=0; j--){
-     m= matrizLed[i][j];
+     //m= *(*(matriz+i)+j);
+      m=matriz[i][j];
+     Serial.println(m);
      digitalWrite(SER, m);
      relojregistro(SRCLK);
       relojregistro(RCLK);
@@ -91,7 +103,7 @@ void setup(){
   digitalWrite(2, 0);
   digitalWrite(3, 0);
   digitalWrite(4, 0);
-  imagen();
+  
 }
 
 void loop(){
@@ -106,24 +118,26 @@ void loop(){
   
   
   if (opcion==49){
-    
     verificacion();
-    delay(3000);
   }
   else if (opcion==50){
 
-    RecibirMatriz();
-    
+    RecibirMatriz(**matrizLed);
+    imagen(**matrizLed);
   }
   else if (opcion == 51){
    
     Serial.println("Ingrese la cantidad de patrones que desea: ");
-    cpatrones = Serial.read();
+    while(Serial.available()==0){}
+    cpatrones = Serial.parseInt();
   		
     Serial.println("Ingrese el tiempo entre patrones en segundos: ");
-    tpatrones = Serial.read();
+    while(Serial.available()==0){}
+    tpatrones = Serial.parseInt();
+    
+    int pmatriz[cpatrones][8][8]={};
   		
-    RecibirMatriz();
+    //RecibirMatriz();
   }
       
 }
