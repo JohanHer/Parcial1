@@ -1,0 +1,30 @@
+***Bienvenido al manual de uso***
+Aquí encontrará una guía rápida para entender el funcionamiento del circuito.
+- En caso de que tenga alguna duda, haya daño y/o se queme el circuito por favor contacte a serivico técnico.
+- Como pudo observar en el menú de inicio, cuando quiera realizar alguna tarea deberá introducir
+el número asociado a esa ejecución.
+- Cuando quiera ingresar un patrón para que se muestre en los Leds, debe tener en cuenta que debe
+tener previamente visualizado el patrón y unicamente ingresar el número 1, en caso de querer ver el
+led de la fila indicada prendido, o 0 si lo desea ver apagado.
+-Tenga en cuenta que solo puede ingresar ocho dígitos cuando se le pida la fila, en caso de no hacerlo
+puede que el resultado no sea lo que usted esperaba.
+Ejemplo: si usted desea que en los leds se muestre un corazón debe realizar lo siguiente:
+Fila #1: 00000000
+Fila #2: 01000010
+Fila #3: 10100101
+Fila #4: 10011001
+Fila #5: 10000001
+Fila #6: 01000010
+Fila #7: 00100100
+Fila #8: 00011000
+Que se reflejará en los leds como:
+Fila #1: 
+Fila #2:  1    1 
+Fila #3: 1 1  1 1
+Fila #4: 1  11  1
+Fila #5: 1      1
+Fila #6:  1    1 
+Fila #7:   1  1
+Fila #8:    11
+-Este muy atento a las instrucciones que aparecen en cada opción después de seleccionarla.
+-Disfrute del funcionamiento del circuito.
